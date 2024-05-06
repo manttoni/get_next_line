@@ -28,6 +28,8 @@ t_nod	*newnode(char *data, size_t len)
 
 t_nod	*ft_lstlast(t_nod *list)
 {
+	if (!list)
+		return (NULL);
 	while (list->next)
 		list = list->next;
 	return (list);
@@ -48,6 +50,8 @@ void	ft_lstclear(t_nod **list, t_nod *last)
 	t_nod	*next;
 	t_nod	*curr;
 
+	if (!*list)
+		return ;
 	curr = *list;
 	*list = last->next;
 	while (curr)

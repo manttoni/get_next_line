@@ -17,18 +17,23 @@
 
 int main(int argc, char **argv)
 {
-	int fd = open(argv[1], O_RDONLY);
-	if (fd < 0)
+
+	while (*(++argv))
 	{
-		printf("Open failed\n");
-		return 1;
+		int fd = open(*argv, O_RDONLY);
+		if (fd < 0)
+		{
+			printf("Open failed\n");
+			return 1;
+		}
+		printf("Opened file %s\n", *argv);
+		char	*line;
+		while ((line = get_next_line(fd)) > 0)
+		{
+			printf("Next_line = %s", line);
+			free(line);
+		}
+		close(fd);
 	}
-	char	*line;
-	while ((line = get_next_line(fd)) > 0)
-	{
-		printf("Next_line = %s", line);
-		free(line);
-	}
-	close(fd);
 	return 0;
 }

@@ -70,7 +70,7 @@ char	*concat(t_nod **list, t_nod *last)
 		next_line = join(next_line, len, ptr);
 		if (next_line == NULL)
 		{
-			ft_lstclear(list, NULL);
+			ft_lstclear(list, ft_lstlast(*list));
 			return (NULL);
 		}
 		len += ptr->len;
@@ -111,7 +111,7 @@ char	*get_next_line(int fd)
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
 		if (bytes_read < 0)
 		{
-			ft_lstclear(&list, NULL);
+			ft_lstclear(&list, ft_lstlast(list));
 			return (NULL);
 		}
 		if (bytes_read == 0)
