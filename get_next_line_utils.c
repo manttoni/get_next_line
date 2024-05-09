@@ -11,31 +11,27 @@ size_t	ft_strlen(char *s)
 	return (len);
 }
 
-char	*gnl_join(char *dst, char *src, char *nl_chr)
+char	*gnl_join(char *dst, char *src, size_t len)
 {
 	char		*ret;
-	size_t		len;
 	unsigned int	i;
 
 	if (!*src)
 		return (dst);
-	if (nl_chr == NULL)
-		len = ft_strlen(dst) + ft_strlen(src) + 1;
-	else
-		len = ft_strlen(dst) + (nl_chr - src) + 2;
-	ret = malloc(len);
+	ret = malloc(ft_strlen(dst) + len + 1);
 	if (ret == NULL)
 		return (NULL);
 	i = 0;
-	while (i < len - 1)
+	while (*src)
 	{
-		if (*dst)
+		if (dst[i])
 			ret[i] = dst[i];
 		else
 			ret[i] = *src++;
 		i++;
 	}
-	free(dst);
+	if (*dst)
+		free(dst);
 	ret[i] = '\0';
 	return (ret);
 }
@@ -56,4 +52,10 @@ char	*ft_strchr(char *str, char chr)
 		str++;
 	}
 	return (NULL);
+}
+
+void	ft_bzero(char *buffer, size_t size)
+{
+	while (size-- > 0)
+		buffer[size] = '\0';
 }

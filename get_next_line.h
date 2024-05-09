@@ -22,8 +22,9 @@
 
 char	*get_next_line(int fd);
 size_t	ft_strlen(char *s);
-char	*gnl_join(char *dst, char *src, char *nl_chr);
+char	*gnl_join(char *dst, char *src, size_t len);
 char	*ft_strchr(char *str, char chr);
 void	gnl_copy(char *dst, char *src);
+void	ft_bzero(char *buffer, size_t size);
 
 #endif

@@ -26,7 +26,7 @@ int main(int argc, char **argv)
 			printf("Open failed\n");
 			return 1;
 		}
-		printf("Opened file %s\n", *argv);
+		printf("\n\n\tOpened file %s\n\n", *argv);
 		char	*line;
 		while ((line = get_next_line(fd)) > 0)
 		{
