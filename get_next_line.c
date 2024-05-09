@@ -21,7 +21,7 @@ char	*get_next_line(int fd)
 	while (nl_chr == NULL)
 	{
 		next_line = gnl_join(next_line, buffer, ft_strlen(buffer));
-		ft_bzero(buffer, ft_strlen(buffer));
+		ft_bzero(buffer, BUFFER_SIZE + 1);
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
 		if (bytes_read < 0 || !next_line)
 			return (NULL);

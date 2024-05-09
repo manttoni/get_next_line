@@ -14,24 +14,28 @@ size_t	ft_strlen(char *s)
 char	*gnl_join(char *dst, char *src, size_t len)
 {
 	char		*ret;
+	char		*ptr;
+	size_t		bytes;
 	unsigned int	i;
 
 	if (!*src)
 		return (dst);
-	ret = malloc(ft_strlen(dst) + len + 1);
+	bytes = ft_strlen(dst) + len + 1;
+	ret = malloc(bytes);
 	if (ret == NULL)
 		return (NULL);
 	i = 0;
-	while (*src)
+	ptr = dst;
+	while (i < bytes - 1)
 	{
-		if (dst[i])
-			ret[i] = dst[i];
+		if (*dst)
+			ret[i] = *dst++;
 		else
 			ret[i] = *src++;
 		i++;
 	}
-	if (*dst)
-		free(dst);
+	if (*ptr)
+		free(ptr);
 	ret[i] = '\0';
 	return (ret);
 }
