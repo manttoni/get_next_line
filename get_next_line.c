@@ -17,7 +17,10 @@ char	*get_next_line(int fd)
 		ft_bzero(buffer, BUFFER_SIZE + 1);
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
 		if (bytes_read < 0)
+		{
+			ft_bzero(buffer, BUFFER_SIZE+1);
 			return (NULL);
+		}
 		if (bytes_read == 0)
 		{
 			if (*next_line == '\0')
