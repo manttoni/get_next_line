@@ -1,12 +1,11 @@
 #include "get_next_line.h"
-#include <stdio.h>
 
 size_t	ft_strlen(char *s)
 {
 	size_t	len;
 
 	len = 0;
-	while (s[len])
+	while (s && *s++)
 		len++;
 	return (len);
 }
@@ -24,8 +23,7 @@ char	*gnl_join(char *dst, char *src, size_t len)
 	ret = malloc(bytes);
 	if (ret == NULL)
 	{
-		if (*dst)
-			free(dst);
+		free(dst);
 		return (NULL);
 	}
 	i = 0;
@@ -38,8 +36,7 @@ char	*gnl_join(char *dst, char *src, size_t len)
 			ret[i] = *src++;
 		i++;
 	}
-	if (*ptr)
-		free(ptr);
+	free(ptr);
 	ret[i] = '\0';
 	return (ret);
 }
