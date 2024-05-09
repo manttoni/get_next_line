@@ -23,7 +23,11 @@ char	*gnl_join(char *dst, char *src, size_t len)
 	bytes = ft_strlen(dst) + len + 1;
 	ret = malloc(bytes);
 	if (ret == NULL)
+	{
+		if (*dst)
+			free(dst);
 		return (NULL);
+	}
 	i = 0;
 	ptr = dst;
 	while (i < bytes - 1)

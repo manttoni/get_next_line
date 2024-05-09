@@ -1,13 +1,4 @@
 #include "get_next_line.h"
-#include <stdio.h>
-
-void test()
-{
-	static int i = 0;
-	char c;
-	printf("Test: %d\n", i++);
-	scanf("%c", &c);
-}
 
 char	*get_next_line(int fd)
 {
@@ -21,9 +12,11 @@ char	*get_next_line(int fd)
 	while (nl_chr == NULL)
 	{
 		next_line = gnl_join(next_line, buffer, ft_strlen(buffer));
+		if (!next_line)
+			return (NULL);
 		ft_bzero(buffer, BUFFER_SIZE + 1);
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
-		if (bytes_read < 0 || !next_line)
+		if (bytes_read < 0)
 			return (NULL);
 		if (bytes_read == 0)
 		{
@@ -34,6 +27,8 @@ char	*get_next_line(int fd)
 		nl_chr = ft_strchr(buffer, '\n');
 	}
 	next_line = gnl_join(next_line, buffer, (nl_chr - buffer) + 1);
+	if (!next_line)
+		return (NULL);
 	gnl_copy(buffer, nl_chr + 1);
 	return (next_line);
 }
