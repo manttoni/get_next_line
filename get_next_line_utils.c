@@ -5,7 +5,9 @@ size_t	ft_strlen(char *s)
 	size_t	len;
 
 	len = 0;
-	while (s && *s++)
+	if (s == NULL)
+		return (0);
+	while (*s++)
 		len++;
 	return (len);
 }
@@ -19,6 +21,8 @@ char	*gnl_join(char *dst, char *src, size_t len)
 
 	if (!*src)
 		return (dst);
+	if (dst == NULL || src == NULL)
+		return (NULL);
 	bytes = ft_strlen(dst) + len + 1;
 	ret = malloc(bytes);
 	if (ret == NULL)
