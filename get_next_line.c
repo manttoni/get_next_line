@@ -1,4 +1,15 @@
 #include "get_next_line.h"
+#include <stdio.h>
+#include <unistd.h>
+#include <fcntl.h>
+
+void test()
+{
+	static int i = 0;
+	FILE *out = fopen("out", "w");
+	fprintf(out, "%d\n", i);
+	fclose(out);
+}
 
 char	*get_next_line(int fd)
 {
@@ -7,6 +18,8 @@ char	*get_next_line(int fd)
 	char		*nl_chr;
 	ssize_t		bytes_read;
 
+	if (fd == -1)
+		return (NULL);
 	next_line = malloc(1);
 	if (!next_line)
 		return (NULL);
@@ -16,10 +29,7 @@ char	*get_next_line(int fd)
 	{
 		next_line = gnl_join(next_line, buffer, BUFFER_SIZE);
 		if (!next_line)
-		{
-			free(next_line);
 			return (NULL);
-		}
 		ft_bzero(buffer, BUFFER_SIZE + 1);
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
 		if (bytes_read < 0)

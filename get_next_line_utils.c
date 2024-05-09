@@ -28,14 +28,10 @@ char	*gnl_join(char *dst, char *src, size_t len)
 	}
 	i = 0;
 	ptr = dst;
+	while (*dst)
+		ret[i++] = *dst++;
 	while (i < bytes - 1)
-	{
-		if (*dst)
-			ret[i] = *dst++;
-		else
-			ret[i] = *src++;
-		i++;
-	}
+		ret[i++] = *src++;
 	free(ptr);
 	ret[i] = '\0';
 	return (ret);
