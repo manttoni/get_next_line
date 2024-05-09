@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amaula <amaula@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/04 12:27:56 by amaula            #+#    #+#             */
-/*   Updated: 2024/05/04 18:51:54 by amaula           ###   ########.fr       */
+/*   Created: 2024/05/06 17:40:50 by amaula            #+#    #+#             */
+/*   Updated: 2024/05/06 17:59:45 by amaula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-#include <unistd.h>
-#include <fcntl.h>
-#include <stdio.h>
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-int main(void)
-{
-	int fd = open("test.txt", O_RDONLY);
-	if (fd < 0)
-	{
-		printf("Open failed\n");
-		return 1;
-	}
-	char	*line;
-	while ((line = get_next_line(fd)) > 0)
-	{
-		printf("Next_line = %s", line);
-		free(line);
-	}
-	close(fd);
-	return 0;
-}
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1000
+# endif
+
+# include <stdlib.h>
+# include <unistd.h>
+
+char	*get_next_line(int fd);
+size_t	ft_strlen(char *s);
+char	*gnl_join(char *dst, char *src, char *nl_chr);
+char	*ft_strchr(char *str, char chr);
+void	gnl_copy(char *dst, char *src);
+
+#endif

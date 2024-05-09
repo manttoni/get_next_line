@@ -1,4 +1,0 @@
-kissa
-koira
-hello
-world
