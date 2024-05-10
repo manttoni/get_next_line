@@ -6,7 +6,7 @@
 /*   By: amaula <amaula@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 12:27:56 by amaula            #+#    #+#             */
-/*   Updated: 2024/05/04 18:51:54 by amaula           ###   ########.fr       */
+/*   Updated: 2024/05/10 16:37:14 by amaula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int main(int argc, char **argv)
 		}
 		printf("\n\n\tOpened file %s\n", *argv);
 		char	*line;
-		while ((line = get_next_line(fd)) > 0)
+		while ((line = get_next_line(fd)) != NULL)
 		{
 			printf("Next_line = %s", line);
 			free(line);
