@@ -16,7 +16,7 @@ char	*get_next_line(int fd)
 	nl_chr = ft_strchr(buffer, '\n');
 	while (nl_chr == NULL)
 	{
-		next_line = gnl_join(next_line, buffer, BUFFER_SIZE);
+		next_line = gnl_join(next_line, buffer, ft_strlen(buffer));
 		if (!next_line)
 			return (NULL);
 		ft_bzero(buffer, BUFFER_SIZE + 1);
