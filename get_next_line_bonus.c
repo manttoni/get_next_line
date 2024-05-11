@@ -6,15 +6,15 @@
 /*   By: amaula <amaula@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 12:40:51 by amaula            #+#    #+#             */
-/*   Updated: 2024/05/11 15:13:33 by amaula           ###   ########.fr       */
+/*   Updated: 2024/05/11 16:53:36 by amaula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 static int	init(char **next_line, char **nl_chr, char *buffer, int fd)
 {
-	if (fd < 0)
+	if (fd < 0 || fd > MAX_FD)
 		return (0);
 	*next_line = malloc(1);
 	if (*next_line == NULL)
@@ -49,7 +49,7 @@ static int	read_to_buffer(int fd, char *buffer, char **next_line)
 
 char	*get_next_line(int fd)
 {
-	static char	buffer[32][BUFFER_SIZE + 1];
+	static char	buffer[MAX_FD][BUFFER_SIZE + 1];
 	char		*next_line;
 	char		*nl_chr;
 	int			read_result;
@@ -58,7 +58,7 @@ char	*get_next_line(int fd)
 		return (NULL);
 	while (nl_chr == NULL)
 	{
-		next_line = gnl_join(next_line, buffer[fd], ft_strlen(buffer));
+		next_line = gnl_join(next_line, buffer[fd], ft_strlen(buffer[fd]));
 		if (!next_line)
 			return (NULL);
 		read_result = read_to_buffer(fd, buffer[fd], &next_line);
