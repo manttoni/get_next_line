@@ -14,7 +14,7 @@
 
 static int	init(char **next_line, char **nl_chr, char *buffer, int fd)
 {
-	if (fd < 0 || fd > MAX_FD)
+	if (fd < 0 || fd >= MAX_FD)
 		return (0);
 	*next_line = malloc(1);
 	if (*next_line == NULL)
