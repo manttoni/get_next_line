@@ -6,7 +6,7 @@
 /*   By: amaula <amaula@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 17:40:50 by amaula            #+#    #+#             */
-/*   Updated: 2024/05/11 16:52:03 by amaula           ###   ########.fr       */
+/*   Updated: 2024/05/11 19:09:16 by amaula           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #  define BUFFER_SIZE 1000
 # endif
 
-# define MAX_FD 2560
+# define MAX_FD 1024
 
 # include <stdlib.h>
 # include <unistd.h>
